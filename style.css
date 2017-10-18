@@ -15,6 +15,16 @@ a {
     cursor: pointer;
 }
 
+
+header {
+	padding: 20px;
+	margin: 0;
+	background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+	color: #f3f3f3;
+	font-size: 50px;
+	text-align: center;
+}
+
 .main {
 	background: #f7f8fa;
 	overflow: hidden;
@@ -121,3 +131,76 @@ a {
 	font-style: normal;
 	cursor: pointer;
 }
+
+
+
+.form-group {
+	width: 664px;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16),
+							0 0 0 1px rgba(0, 0, 0, 0.08);
+	height: 44px;
+	outline: none;
+	transition: box-shadow 200ms;
+	margin: 20px auto;
+	background-color: #fff;
+	cursor: text;
+	display: block;
+	font: 18px arial, sans-serif;
+	line-height: 36px;
+	max-width: 672px;
+	position: relative;
+}
+
+
+.form-group  input {
+	background: transparent;
+	border: none;
+	box-sizing: border-box;
+	margin: 0;
+	outline: none;
+	padding: 0 8px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	top: 2px;
+	width: 100%;
+	font-size: 18px;
+	font-family: cursive;
+}
+
+#tip {
+	font-size: 16px;
+	margin-top: 1px;
+	overflow: hidden;
+	position: absolute;
+	text-align: initial;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	bottom: 4px;
+	color: rgba(0,0,0, 0.38);
+	left: 13px;
+	right: 13px;
+	top: 4px;
+	transition: .1s;
+}
+
+.form-group:hover {
+	border: none;
+	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2),
+							0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+
+
+.focus #tip {
+	visibility: hidden;
+}
+
+
+
+
+
+
+

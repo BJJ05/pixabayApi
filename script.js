@@ -1,10 +1,3 @@
-$('#name').on('input', (e) => {
-    let name = e.target.value.trim();
-    if( name != '') {
-        //makeRequest();
-    }
-    
-});
 
 function makePage(pageUrl, comments, favorites, likes, user) {
     
@@ -47,4 +40,14 @@ function getFoto() {
 
 $(document).ready(function(){
     getFoto();
+    
+    
+    $('#search_name').on('focus', () => {
+      $('body').addClass('focus');
+    });
+    $('#search_name').on('blur', () => {
+      $('body').removeClass('focus');
+    });
+    
+    
 });
