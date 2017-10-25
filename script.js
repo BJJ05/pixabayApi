@@ -1,25 +1,32 @@
 
 function makePage(pageUrl, comments, favorites, likes, user) {
     
-    let item = $('.gallery__item').first().clone();
+    //let item = $('.gallery__item').first().clone();
+    let grid  = $('.gallery__grid');
     
-    $(item).find('img').attr('src', pageUrl);
-    let text        = document.createTextNode( ' ' + comments);
-    let favText     = document.createTextNode( ' ' + favorites);
-    let likesText   = document.createTextNode( ' ' + likes);
-
-    $(text).insertAfter($(item).find('.icon__like'));
-    $(favText).insertAfter($(item).find('.icon__favorite'));
-    $(likesText).insertAfter($(item).find('.icon__comment'));
-    $(item).find('.gallery__desc a ').text(user); 
-
+    let item  = $('<div></div>').addClass('gallery__item');
+    let link  = $('<a></a>').attr('href', pageUrl);
+    let img   = $('<img>').attr('src', pageUrl);
+    let desc  = $('<div></div>').addClass('gallery__desc');
+    let count = $('<div></div>').addClass('gallery__counts');
+    let like  = $('<em></em>').append($('<i></i> ').addClass('icon icon__like')).append(likes);
+    let fav   = $('<em></em>').append($('<i></i> ').addClass('icon icon__favorite')).append(favorites);
+    let comm  = $('<em></em>').append($('<i></i> ').addClass('icon icon__comment')).append(comments);
+    
+    item.append(link.append(img));
+    count.append(like).append(fav).append(comm);
+    desc.append(count);
+    item.append(desc);
     $('.gallery__grid').append(item);
 }
 
-function getFoto() {
+function getFoto(name) {
+    var name = name || 'money';
+    
     var API_KEY = '6749197-c46759db6d577b1d706cdf4d4';
-    var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent('red roses');
+    var URL = "https://pixabay.com/api/?key="+API_KEY+"&per_page=4&min_width=350&q="+encodeURIComponent(name);
     $.getJSON(URL, function(data){
+      console.log(data);
     if (parseInt(data.totalHits) > 0) {
         
         $.each(data.hits, function(i, item){ 
@@ -31,7 +38,6 @@ function getFoto() {
     
             makePage(pageUrl, comments, favorites, likes, user);
          });
-         $('.gallery__item').first().hide();
         }
     else
         console.log('No hits');
@@ -41,13 +47,21 @@ function getFoto() {
 $(document).ready(function(){
     getFoto();
     
-    
-    $('#search_name').on('focus', () => {
+    let searchFrom = $('#search_name');
+    searchFrom.on('focus', () => {
       $('body').addClass('focus');
     });
-    $('#search_name').on('blur', () => {
+    searchFrom.on('blur', () => {
       $('body').removeClass('focus');
+      searchFrom.val('');
     });
     
-    
+    $('.form-group').on('submit', (e) => {
+      e.preventDefault();
+      let value = searchFrom.val();
+      console.log(value);
+      $('.gallery__grid').html('');
+      getFoto(value);
+      searchFrom.val('');
+    });
 });

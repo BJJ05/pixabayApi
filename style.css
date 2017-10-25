@@ -37,9 +37,14 @@ header {
 }
 
 
+.gallery__grid {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
 .gallery__item {
-	width: 446px;
-	height: 310px;
+	flex-basis: 25%;
 	display: block;
 }
 
@@ -48,11 +53,11 @@ header {
 }
 
 .gallery__grid .gallery__item {
-	float: left;
 	position: relative;
-	margin: 5px;
 	box-sizing: content-box;
+	margin-bottom: 1vw;
 	overflow: hidden;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
 }
 
 .gallery__grid .gallery__item img {
@@ -135,7 +140,8 @@ header {
 
 
 .form-group {
-	width: 664px;
+	max-width: 664px;
+	width: 100%;
 	border: none;
 	border-radius: 2px;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16),
